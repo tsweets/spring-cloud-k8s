@@ -1,0 +1,42 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    name: CLOUD-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: CARDHOLDER-SERVICE
+          uri: lb://CARDHOLDER-SERVICE
+          predicates:
+            - Path=/cardholders/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: CARDHOLDER-SERVICE
+                fallbackuri: forward:/cardholderServiceFallback
+        - id: CARD-SERVICE
+          uri: lb://CARD-SERVICE
+          predicates:
+            - Path=/cards/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: CARD-SERVICE
+                fallbackuri: forward:/cardServiceFallback
+
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 4000
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream

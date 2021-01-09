@@ -1,0 +1,1 @@
+insert into cardholder (dob, email, external_id, first_name, last_name, middle_name, phone, registration_date, ssn, status, id) values ('2021-01-05 00:47:54.639', 'tony@example.com', 'ex-1010', 'Lee', 'Cardholder', null,'5551111234', '2021-01-05 00:47:54.639', '000-00-0000', 'PASSED', 1);
