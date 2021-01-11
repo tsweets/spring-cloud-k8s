@@ -25,6 +25,16 @@ spring:
               args:
                 name: CARD-SERVICE
                 fallbackuri: forward:/cardServiceFallback
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/v1/users/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: USER-SERVICE
+                fallbackuri: forward:/userServiceFallback
+
 
 hystrix:
   command:

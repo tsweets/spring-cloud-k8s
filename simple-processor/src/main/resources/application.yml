@@ -1,0 +1,15 @@
+server:
+  port: 9500
+
+spring:
+  application:
+    name: SIMPLE-PROCESSOR
+  zipkin:
+    enabled: true
+    base-url: http://localhost:9411/
+  jpa:
+    show-sql: true
+
+logging:
+  level:
+    org.hibernate.type: TRACE

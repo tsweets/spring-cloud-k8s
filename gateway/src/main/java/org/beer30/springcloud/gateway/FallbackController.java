@@ -15,4 +15,9 @@ public class FallbackController {
     public String cardServiceFallback() {
         return "Error Trying to Reach Card API";
     }
+
+    @GetMapping("/userServiceFallback")
+    public String userServiceFallback() {
+        return "Error Trying to Reach User API";
+    }
 }
