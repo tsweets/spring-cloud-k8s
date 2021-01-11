@@ -1,12 +1,13 @@
 # Table of Contents
 1. [Overview](#overview)
 2. [Development Environment](#devenv)
-3. [Service and Ports](#ports)
-4. [Sub Projects](#subprojects)
-5. [Rest Documenttion](#restdocs)
-6. [System Startup](#startup)
-7. [Simple Processor](#processor)
-8. [Miscellaneous](#miscellaneous)
+3. [DevSecOps](#devsecops)
+4. [Service and Ports](#ports)
+5. [Sub Projects](#subprojects)
+6. [Rest Documenttion](#restdocs)
+7. [System Startup](#startup)
+8. [Simple Processor](#processor)
+9. [Miscellaneous](#miscellaneous)
 
 
 ***     
@@ -36,6 +37,7 @@ In 2013 I was working in at a startup company and I started a project to create 
 
 The legacy application is designed as a Service Oriented Architecture, however that doesn’t mean it directly maps to a Microservice Architecture. The most common mistake I see in the field is that when a project creates microservices, they don’t make them completely autonomous. Meaning that they can’t be deployed and tested independently. Said another way, if I have to care about other services before I deploy a new version of my microservice, then I’m not independently deployable. One of the goals of this project is to explore making the services in the legacy app autonomous. 
 
+
 ### Use Cases
 The uses cases that I want to explore are the following:
 1. Create Cardholder
@@ -62,6 +64,12 @@ The legacy app has about 100 domain entities, but I do not need to have them all
     - Cardholders have an account. The account tracks the balance of the card. An account can have one or more Cards attached to it. 
 -	Card
     - This is payment card (ie Visa/MC) that can used for payments
+
+<br>
+<br>
+
+# DevSecOps
+Another goal of this project is to implement a DevSecOps pipeline. The original application is being built and deployed with a Jenkins Pipeline. The code is stored in a Nexus Artifact repository. Most of that will stay the same, however in my build environment I will add a Harbor Docker Registry (https://goharbor.io). One of the neat things about Harbor is vulnerability scanning of Docker containers. This will add the "Sec" in my current DevOps pipeline. 
 
 <br>
 <br>
