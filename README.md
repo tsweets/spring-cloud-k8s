@@ -5,9 +5,10 @@
 4. [Service and Ports](#ports)
 5. [Sub Projects](#subprojects)
 6. [Rest Documenttion](#restdocs)
-7. [System Startup](#startup)
-8. [Simple Processor](#processor)
-9. [Miscellaneous](#miscellaneous)
+7. [Docker](#docker)
+8. [System Startup](#startup)
+9. [Simple Processor](#processor)
+10. [Miscellaneous](#miscellaneous)
 
 
 ***     
@@ -150,6 +151,20 @@ Microservice for the User domain (cover's cardholders and admins)
 Each microservice has it's own REST Documentation. This documentation is implemented with OpenAPI 3.0 and includs built in swagger UI. The access the docs - access the running Microserver on its normal port and add /swagger-ui.html to the URL for example the user microservice REST docs are available at:
 ```
 url http://localhost:10003/swagger-ui.html
+```
+
+<br>
+<br>
+
+# Docker <a name="docker"></a>
+To build a docker image locally. 
+```
+mvn jib:dockerBuild
+```
+
+To build a docker image and push to registry
+```
+mvn jib:build
 ```
 
 <br>

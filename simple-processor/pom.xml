@@ -18,6 +18,7 @@
         <java.version>11</java.version>
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
         <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
+        <jib-maven-plugin.version>2.5.0</jib-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -126,5 +127,45 @@
                 </configuration>
             </plugin>
         </plugins>
+        <pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>com.google.cloud.tools</groupId>
+					<artifactId>jib-maven-plugin</artifactId>
+					<version>${jib-maven-plugin.version}</version>
+					<configuration>
+						<from>
+							<image>openjdk:11-jdk</image>
+						</from>
+						<to>
+							<image>simple-processor:latest</image>
+						</to>
+						<container>
+							<entrypoint>
+								<shell>sh</shell>
+								<option>-c</option>
+								<arg>/entrypoint.sh</arg>
+							</entrypoint>
+							<ports>
+								<port>8080</port>
+							</ports>
+							<environment>
+								<SPRING_OUTPUT_ANSI_ENABLED>ALWAYS</SPRING_OUTPUT_ANSI_ENABLED>
+							</environment>
+							<creationTime>USE_CURRENT_TIMESTAMP</creationTime>
+						</container>
+						<extraDirectories>
+							<paths>src/main/jib</paths>
+							<permissions>
+								<permission>
+									<file>/entrypoint.sh</file>
+									<mode>755</mode>
+								</permission>
+							</permissions>
+						</extraDirectories>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
     </build>
 </project>
