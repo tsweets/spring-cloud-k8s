@@ -1,4 +1,4 @@
-package org.beer30.springcloud.serivceregistry;
+package org.beer30.springcloud.serviceregistry;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
