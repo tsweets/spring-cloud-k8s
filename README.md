@@ -167,6 +167,14 @@ To build a docker image and push to registry
 mvn jib:build
 ```
 
+## Running via docker compose  
+cd into the top level docker directory and run docker-compose.  
+But before that, edit the ip address in env.txt to your localhost. 
+```
+docker-compose --env-file=env.txt up
+```
+
+The  compose file sets the startup order using docker compose wait https://github.com/ufoscout/docker-compose-wait
 <br>
 <br>
 
