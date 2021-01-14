@@ -13,12 +13,12 @@ spring:
 logging:
   level:
     root: info
-
+config_server_addr: localhost
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:9000/eureka/
+      defaultZone: http://${config_server_addr}:9000/eureka/
   instance:
-    hostname: localhost
+    hostname: ${config_server_addr}

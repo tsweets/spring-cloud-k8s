@@ -1,5 +1,6 @@
+config_server_addr: localhost
 spring:
   cloud:
     config:
       enabled: true
-      uri: http://localhost:9001
+      uri: http://${config_server_addr}:9001

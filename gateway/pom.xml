@@ -88,14 +88,16 @@
 							<image>openjdk:11-jdk</image>
 						</from>
 						<to>
-							<image>config-server:latest</image>
+							<image>api-gateway:latest</image>
 						</to>
 						<container>
 							<entrypoint>
 								<shell>sh</shell>
 								<option>-c</option>
-								<arg>/entrypoint.sh</arg>
 							</entrypoint>
+							<args>
+								<arg>/wait &amp;&amp; /entrypoint.sh</arg>
+							</args>
 							<ports>
 								<port>8080</port>
 							</ports>
@@ -109,6 +111,10 @@
 							<permissions>
 								<permission>
 									<file>/entrypoint.sh</file>
+									<mode>755</mode>
+								</permission>
+								<permission>
+									<file>/wait</file>
 									<mode>755</mode>
 								</permission>
 							</permissions>

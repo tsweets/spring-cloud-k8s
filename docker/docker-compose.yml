@@ -1,0 +1,57 @@
+version: '3.1'
+services:
+  service-registry:
+    image: service-registry:latest
+    networks:
+    - default
+    ports: 
+    - 9000:9000
+
+  config-server:
+    depends_on:  
+    - service-registry
+    image: config-server:latest
+    networks:
+    - default
+    ports:
+    - 9001:9001  
+    environment:
+      - WAIT_HOSTS=service-registry:9000
+      - config_server_addr=${config_server_addr}
+
+  api-gateway:
+    depends_on:  
+    - config-server
+    image: api-gateway:latest
+    networks:
+    - default
+    ports:
+    - 9002:9002  
+    environment:
+      - WAIT_HOSTS=config-server:9001
+      - config_server_addr=${config_server_addr}
+  
+#networks:
+#  mr_pickles:
+#    driver: bridge    
+#  db:
+#    image: mysql:8
+#    ports:
+#    - 13306:3306
+#    environment:
+#      MYSQL_ROOT_PASSWORD: password
+#      MYSQL_USER: empuser
+#      MYSQL_PASSWORD: password
+#      MYSQL_DATABASE: profiles
+#    volumes:
+#    - profiledata:/var/lib/mysql
+#
+#  app:
+#    image: profiles:latest
+#    ports:
+#    - 8080:8080
+#    volumes:
+#    - profiledata:/data
+
+#volumes:
+#  profiledata
