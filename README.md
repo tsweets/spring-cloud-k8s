@@ -95,6 +95,9 @@ Spring and Microservice development is hardware intensive. Currently for this pr
 - Spring Web Flow
 - Some other cool things
 
+
+#### Docker Notes
+I had to bump up my Docker Desktop memory to 8GB to run all of the containers. 
 <br>
 <br>
 
@@ -194,6 +197,8 @@ Order is below
 8. Cardholder Service
 
 
+As already mention the docker compose wait tool is used to enforce a specific startup order. The wait program must be included in the Docker file (I may make a custom base Docker image though at a later stage).  As of now wait needs to be included in the image and configured in the pom and docker compose file.
+
 <br>
 <br>
 
@@ -225,5 +230,6 @@ URL = http://localhost:9411/zipkin/
 -	Create Standalone Profile
 -	Docker Files
 -	Docker Compose File
+-   Custom base image (include wait)
 
 

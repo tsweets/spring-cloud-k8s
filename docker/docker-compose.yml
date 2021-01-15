@@ -30,7 +30,71 @@ services:
     environment:
       - WAIT_HOSTS=config-server:9001
       - config_server_addr=${config_server_addr}
+
+  hystrix-dashboard:
+    depends_on:  
+    - config-server
+    image: hystrix-dashboard:latest
+    networks:
+    - default
+    ports:
+    - 9295:9295  
+    environment:
+      - WAIT_HOSTS=config-server:9001
+      - config_server_addr=${config_server_addr}
   
+  simple-processor:
+    depends_on:  
+    - config-server
+    - hystrix-dashboard
+    image: simple-processor:latest
+    networks:
+    - default
+    ports:
+    - 9500:9500
+    environment:
+      - WAIT_HOSTS=config-server:9001
+      - config_server_addr=${config_server_addr}
+
+  user-service:
+    depends_on:  
+    - config-server
+    - hystrix-dashboard
+    image: user-service:latest
+    networks:
+    - default
+    ports:
+    - 10003:10003
+    environment:
+      - WAIT_HOSTS=config-server:9001
+      - config_server_addr=${config_server_addr}
+
+  card-service:
+    depends_on:  
+    - config-server
+    - hystrix-dashboard
+    image: card-service:latest
+    networks:
+    - default
+    ports:
+    - 10002:10002
+    environment:
+      - WAIT_HOSTS=config-server:9001
+      - config_server_addr=${config_server_addr}
+
+  cardholder-service:
+    depends_on:  
+    - config-server
+    - hystrix-dashboard
+    image: cardholder-service:latest
+    networks:
+    - default
+    ports:
+    - 10001:10001
+    environment:
+      - WAIT_HOSTS=config-server:9001
+      - config_server_addr=${config_server_addr}
+
 #networks:
 #  mr_pickles:
 #    driver: bridge    

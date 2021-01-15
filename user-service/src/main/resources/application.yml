@@ -1,15 +1,17 @@
 server:
   port: 10003
 
+config_server_addr: localhost
+
 spring:
   application:
     name: USER-SERVICE
   zipkin:
     enabled: true
-    base-url: http://localhost:9411/
+    base-url: http://${config_server_addr}:9411/
   jpa:
     show-sql: true
 
 logging:
   level:
-    org.hibernate.type: TRACE
+    org.hibernate.type: INFO
